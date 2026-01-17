@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tarot Guider Official | Sanctuary of Clarity</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{ --bg:#050505; --gold:#c9a24d; --text:#e6e6e6; --border:#2a2a2a; --red:#ff4d4d; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{ background:var(--bg); color:var(--text); font-family:'Playfair Display', serif; line-height:1.6; }
+.container{ max-width:800px; margin:auto; padding:20px; }
+header { text-align: center; padding: 40px 0; border-bottom: 1px solid var(--gold); margin-bottom: 40px; }
+.hero-img { width: 100%; max-width: 600px; height: 300px; object-fit: cover; border: 1px solid var(--gold); border-radius: 4px; margin-bottom: 20px; filter: grayscale(30%) sepia(20%); }
+section { margin-bottom: 50px; border: 1px solid var(--border); padding: 25px; border-radius: 8px; background: rgba(15,15,15,0.8); }
+h1, h2, h3 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+input, select, textarea { width:100%; background:#111; color:#fff; border:1px solid var(--border); padding:14px; margin-top:10px; font-family:inherit; border-radius:4px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+.btn { display:block; width:100%; text-align:center; padding:18px; margin-top:25px; border:1px solid var(--gold); background:transparent; color:var(--gold); text-decoration:none; cursor:pointer; font-weight:bold; font-size: 1.1rem; transition:0.3s; }
+.btn:hover { background:var(--gold); color:#000; box-shadow: 0 0 15px rgba(201,162,77,0.3); }
+.btn:disabled { opacity:0.2; cursor:not-allowed; }
+.price-box { border: 2px solid var(--gold); padding: 20px; text-align: center; background: #000; margin-top: 20px; }
+#priceDisplay { font-size: 1.4rem; color: var(--gold); font-weight: bold; }
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.98); justify-content:center; align-items:center; z-index:1000; padding:20px; overflow-y: auto; }
+.modal-box { background:#0a0a0a; border:1px solid var(--gold); padding:30px; max-width:600px; width: 100%; }
+@media(max-width:600px){ .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?auto=format&fit=crop&w=1000&q=80" alt="Tarot Aesthetic" class="hero-img">
+        <h1>The Tarot Guider Official</h1>
+        <p style="color:var(--gold)">SANCTUARY OF CLARITY</p>
+    </header>
+
+    <section>
+        <h2>The Guider's Message</h2>
+        <p>This is a space of evolutionary truth. I provide disciplined mapping of your energies. No sugar-coating. No delusions.</p>
+    </section>
+
+    <section id="booking-area">
+        <h2>Service Booking</h2>
+        <p id="lockMessage" style="color:var(--gold); font-weight:bold; margin-bottom: 10px;"></p>
+        <div style="font-size: 0.8rem; margin-bottom: 20px;">Standard: 20 Slots | <span style="color:var(--red)">Emergency: 5 Slots (Double Price)</span></div>
+
+        <div class="grid">
+            <input type="text" id="clientName" placeholder="Full Name">
+            <input type="number" id="clientAge" placeholder="Age">
+        </div>
+        <div class="grid">
+            <select id="clientGender">
+                <option value="">Select Gender</option><option value="Male">Male</option><option value="Female">Female</option>
+            </select>
+            <select id="clientZodiac">
+                <option value="">Zodiac Sign</option>
+                <option>Aries</option><option>Taurus</option><option>Gemini</option><option>Cancer</option>
+                <option>Leo</option><option>Virgo</option><option>Libra</option><option>Scorpio</option>
+                <option>Sagittarius</option><option>Capricorn</option><option>Aquarius</option><option>Pisces</option>
+            </select>
+        </div>
+        <div class="grid">
+            <input type="tel" id="clientMobile" placeholder="WhatsApp Number">
+            <input type="email" id="clientEmail" placeholder="Email Address">
+        </div>
+
+        <select id="tierSelect">
+            <option value="1">Level 1 (1 Question) - 1,000 chars</option>
+            <option value="2">Level 2 (2 Questions) - 2,000 chars</option>
+            <option value="3">Level 3 (3 Questions) - 3,000 chars</option>
+            <option value="4">Level 4 (4 Questions) - 4,000 chars</option>
+            <option value="5">Level 5 (5 Questions) - 5,000 chars</option>
+            <option value="6">Level 6 (6 Questions) - 6,000 chars</option>
+        </select>
+
+        <textarea id="questionBox" rows="6" placeholder="Describe your situation here..."></textarea>
+        <div id="charCounter" style="text-align:right; font-size:0.8rem; color:#888;">1000 characters remaining</div>
+
+        <button class="btn" id="bookBtn">PROCEED TO BOOKING</button>
+    </section>
+
+    <section>
+        <h2>Global Pricing (PPP Adjusted)</h2>
+        <select id="currencyToggle">
+            <option value="inr">India (INR)</option><option value="npl">Nepal (NPR)</option><option value="btn">Bhutan (BTN)</option>
+            <option value="afg">Afghanistan (AFN)</option><option value="chn">China (CNY)</option><option value="jpn">Japan (JPY)</option>
+            <option value="tha">Thailand (THB)</option><option value="kor">South Korea (KRW)</option><option value="mng">Mongolia (MNT)</option>
+            <option value="sgp">Singapore (SGD)</option><option value="idn">Indonesia (IDR)</option><option value="irn">Iran (IRR)</option>
+            <option value="irq">Iraq (IQD)</option><option value="sau">Saudi Arabia (SAR)</option><option value="ken">Kenya (KES)</option>
+            <option value="mdg">Madagascar (MGA)</option><option value="egy">Egypt (EGP)</option><option value="tur">Turkey (TRY)</option>
+            <option value="eur">All European Countries (EUR)</option><option value="ukr">Ukraine (UAH)</option><option value="isr">Israel (ILS)</option>
+            <option value="can">Canada (CAD)</option><option value="usa">USA (USD)</option><option value="uk">United Kingdom (GBP)</option>
+            <option value="mex">Mexico (MXN)</option><option value="bra">Brazil (BRL)</option><option value="col">Colombia (COP)</option>
+            <option value="ven">Venezuela (VES)</option><option value="chl">Chile (CLP)</option><option value="bol">Bolivia (BOB)</option>
+            <option value="per">Peru (PEN)</option><option value="arg">Argentina (ARS)</option><option value="kwt">Kuwait (KWD)</option>
+            <option value="aus">Australia (AUD)</option><option value="nzl">New Zealand (NZD)</option><option value="che">Switzerland (CHF)</option>
+            <option value="nor">Norway (NOK)</option><option value="swe">Sweden (SEK)</option><option value="dnk">Denmark (DKK)</option>
+            <option value="uae">UAE (AED)</option><option value="qat">Qatar (QAR)</option><option value="lux">Luxembourg (EUR)</option>
+            <option value="mys">Malaysia (MYR)</option><option value="zaf">South Africa (ZAR)</option><option value="vnm">Vietnam (VND)</option>
+            <option value="nga">Nigeria (NGN)</option><option value="rus">Russia (RUB)</option><option value="pol">Poland (PLN)</option>
+        </select>
+        <div class="price-box"><p id="priceDisplay">Rate: ₹500 – ₹3000</p></div>
+        <div class="grid" style="margin-top:20px;">
+            <a class="btn" href="#">Razorpay (India)</a>
+            <a class="btn" href="#">Stripe (Global)</a>
+        </div>
+    </section>
+</div>
+
+<div class="modal" id="conductModal">
+    <div class="modal-box">
+        <h2 style="color:var(--red)">MANDATORY CONDUCT AGREEMENT</h2>
+        <div style="text-align:left; margin: 20px 0; font-size: 0.95rem; border: 1px solid #333; padding: 15px; background: #000;">
+            <p><strong>1. Strict Address:</strong> No informal terms (Dear, Sweetheart, Jaan, Babu).</p>
+            <p><strong>2. Zero Tolerance:</strong> No vulgarity or sexual comments.</p>
+            <p><strong>3. Boundaries:</strong> No personal questions toward the Guider.</p>
+            <p style="color:var(--red); margin-top:10px;"><strong>PENALTY: PERMANENT BAN & ZERO REFUND.</strong></p>
+        </div>
+        <p>Do you accept these terms to proceed to WhatsApp?</p>
+        <a id="waLink" class="btn">I ACCEPT & PROCEED</a>
+        <button class="btn" style="border-color:#444; color:#444;" onclick="location.reload()">DECLINE</button>
+    </div>
+</div>
+
+<script>
+const limits={1:1000,2:2000,3:3000,4:4000,5:5000,6:6000};
+const priceMap={
+    inr: "₹500 – ₹3000", npl: "800 – 4800 NPR", btn: "500 – 3000 BTN", afg: "700 – 4200 AFN", chn: "45 – 270 CNY",
+    jpn: "1500 – 9000 JPY", tha: "350 – 2100 THB", kor: "13k – 80k KRW", mng: "35k – 210k MNT", sgp: "15 – 85 SGD",
+    idn: "150k – 900k IDR", irn: "420k – 2.5m IRR", irq: "13k – 80k IQD", sau: "40 – 220 SAR", ken: "1300 – 7800 KES",
+    mdg: "45k – 270k MGA", egy: "300 – 1800 EGP", tur: "200 – 1200 TRY", eur: "10 – 60 EUR", ukr: "400 – 2400 UAH",
+    isr: "40 – 240 ILS", can: "15 – 85 CAD", usa: "$10 – $60 USD", uk: "£10 – £60 GBP", mex: "180 – 1100 MXN",
+    bra: "50 – 300 BRL", col: "40k – 240k COP", ven: "350 – 2100 VES", chl: "9k – 54k CLP", bol: "70 – 420 BOB",
+    per: "40 – 240 PEN", arg: "8k – 50k ARS", kwt: "3 – 20 KWD", aus: "$15 – $90 AUD", nzl: "$16 – $95 NZD",
+    che: "10 – 60 CHF", nor: "100 – 600 NOK", swe: "100 – 600 SEK", dnk: "70 – 420 DKK", uae: "40 – 220 AED",
+    qat: "40 – 220 QAR", lux: "10 – 60 EUR", mys: "45 – 270 MYR", zaf: "180 – 1100 ZAR", vnm: "250k – 1.5m VND",
+    nga: "8k – 50k NGN", rus: "900 – 5400 RUB", pol: "40 – 240 PLN"
+};
+
+const tier=document.getElementById("tierSelect");
+const box=document.getElementById("questionBox");
+const counter=document.getElementById("charCounter");
+tier.onchange=()=>{ box.maxLength=limits[tier.value]; counter.textContent=limits[tier.value]+" characters remaining"; };
+box.oninput=()=>{ counter.textContent=(box.maxLength-box.value.length)+" characters remaining"; };
+
+document.getElementById("currencyToggle").onchange=(e)=>{
+    document.getElementById("priceDisplay").textContent = "Rate: " + (priceMap[e.target.value] || "$10 - $60 USD");
+};
+
+const ist = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+const open = ist.getDay() === 0 && ist.getHours() >= 10 && ist.getHours() < 12;
+// const open = true; // UNCOMMENT TO TEST BUTTON
+if(!open) { document.getElementById("bookBtn").disabled = true; document.getElementById("lockMessage").textContent = "CLOSED: Bookings open Sunday at 10:00 AM IST."; }
+
+document.getElementById("bookBtn").onclick=()=>{
+    if(!document.getElementById("clientName").value) { alert("Please fill your details first."); return; }
+    document.getElementById("conductModal").style.display="flex";
+    const msg = `BOOKING:%20Level%20${tier.value}%0AName:%20${document.getElementById("clientName").value}%0AZodiac:%20${document.getElementById("clientZodiac").value}%0A%0AI%20agree%20to%20the%20Conduct%20Rules.`;
+    document.getElementById("waLink").href="https://wa.me/910000000000?text=" + msg;
+};
+</script>
+</body>
+</html>
