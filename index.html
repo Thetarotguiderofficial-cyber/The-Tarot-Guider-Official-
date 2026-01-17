@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tarot Guider Official</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0b0b;
+  --gold:#c9a24d;
+  --text:#e6e6e6;
+  --border:#1f1f1f;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Playfair Display', serif;
+  line-height:1.75;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:90px 20px;
+}
+
+section{
+  margin-bottom:120px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.9s ease;
+}
+
+section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h1,h2,h3{color:var(--gold)}
+p{color:#d0d0d0;margin-top:12px}
+
+select,textarea{
+  width:100%;
+  background:#0f0f0f;
+  color:#fff;
+  border:1px solid var(--border);
+  padding:15px;
+  margin-top:15px;
+  font-family:inherit;
+}
+
+textarea::placeholder{
+  color:#888;
+}
+
+.counter{
+  margin-top:8px;
+  color:#aaa;
+  font-size:0.9rem;
+}
+
+.notice{
+  border:1px solid var(--gold);
+  padding:30px;
+  margin-top:35px;
+  background:#0f0f0f;
+}
+
+.gold-box{
+  border:1px solid var(--gold);
+  padding:20px;
+  margin-top:25px;
+  background:#0f0f0f;
+  text-align:center;
+  color:var(--gold);
+}
+
+.btn{
+  display:inline-block;
+  margin-top:35px;
+  padding:16px 38px;
+  border:1px solid var(--gold);
+  background:transparent;
+  color:var(--gold);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:var(--gold);
+  color:#000;
+}
+
+.btn:disabled{
+  opacity:0.35;
+  cursor:not-allowed;
+}
+
+.center{
+  text-align:center;
+}
+
+.glow{
+  animation:glow 2.5s ease-in-out infinite;
+}
+
+@keyframes glow{
+  0%{box-shadow:0 0 0 rgba(201,162,77,0)}
+  50%{box-shadow:0 0 18px rgba(201,162,77,0.45)}
+  100%{box-shadow:0 0 0 rgba(201,162,77,0)}
+}
+
+.conduct{
+  border:2px solid var(--gold);
+  padding:40px;
+  background:#0f0f0f;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.88);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-box{
+  background:#0f0f0f;
+  border:1px solid var(--gold);
+  padding:45px;
+  max-width:520px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  padding:50px 20px;
+  color:#777;
+  font-size:0.9rem;
+}
+
+@media(max-width:768px){
+  h1{font-size:2.2rem}
+  h2{font-size:1.9rem}
+  .container{padding:70px 18px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<section>
+<h1>The Tarot Guider Official: Sanctuary of Clarity.</h1>
+<p><strong>Professional, Disciplined, and Evolutionary Tarot Guidance.</strong></p>
+
+<div class="notice">
+<p><strong>BOOKING WINDOW</strong></p>
+<p>
+Sunday Only · 10:00 AM – 12:00 PM IST<br>
+20 Standard Slots · 5 Emergency Slots (Double Price)
+</p>
+<p style="color:var(--gold);margin-top:10px;font-size:0.9rem">
+For Priority Emergency Slots (Double Price), please contact via the private inquiry form below.
+</p>
+</div>
+
+<p id="lockMessage" style="color:var(--gold);margin-top:20px"></p>
+</section>
+
+<section>
+<h2>Service Booking</h2>
+
+<select id="tierSelect">
+<option value="1">Level One – 1 Question</option>
+<option value="2">Level Two – 2 Questions</option>
+<option value="3">Level Three – 3 Questions</option>
+<option value="4">Level Four – 4 Questions</option>
+<option value="5">Level Five – 5 Questions</option>
+<option value="6">Level Six – 6 Questions</option>
+</select>
+
+<textarea id="questionBox" rows="6" maxlength="1000"
+placeholder="Describe your situation here... (Note: Characters are limited based on your selected tier)."></textarea>
+<div class="counter" id="charCounter">1000 characters remaining</div>
+
+<div class="center">
+<button class="btn glow" id="bookBtn">Book Now</button>
+</div>
+</section>
+
+<section>
+<h2>Global Pricing (PPP Adjusted)</h2>
+
+<select id="currencyToggle">
+<option value="inr">India (INR)</option>
+<option value="intl">International (USD)</option>
+</select>
+
+<p id="priceDisplay" style="margin-top:20px">₹500 – ₹3000</p>
+<p><em>Prices are adjusted for local purchasing power parity across 20+ countries.</em></p>
+
+<div class="gold-box">
+GPay / UPI ID: <strong>[Coming Soon – Verification Required]</strong>
+</div>
+
+<a class="btn" href="#" target="_blank">Pay via Razorpay (India)</a>
+<a class="btn" href="#" target="_blank">Pay via Stripe (International)</a>
+</section>
+
+<section class="conduct">
+<h2>The Mandatory Conduct Agreement</h2>
+<ul style="margin-top:20px;padding-left:20px">
+<li>Strict Address Policy: No informal terms such as Dear, Sweetheart, Jaan, or Babu.</li>
+<li>Zero Tolerance for vulgarity, slurs, or sexual comments (English or Hindi).</li>
+<li>No personal questions directed toward the Guider.</li>
+</ul>
+<p style="color:#ff9d9d;font-weight:600;margin-top:20px">
+Penalty: Permanent ban and ZERO REFUND.
+</p>
+</section>
+
+</div>
+
+<div class="modal" id="verifyModal">
+  <div class="modal-box">
+    <h2>STOP</h2>
+    <p>
+      To confirm your slot:
+      <br><br>
+      1. Complete payment<br>
+      2. Screenshot receipt<br>
+      3. Screenshot Conduct Agreement
+    </p>
+    <a id="waLink" class="btn" target="_blank">Proceed to WhatsApp Verification</a>
+  </div>
+</div>
+
+<footer>
+© The Tarot Guider Official · All Rights Reserved
+</footer>
+
+<script>
+/* Reveal animation */
+document.querySelectorAll("section").forEach(sec=>{
+ new IntersectionObserver(e=>{
+  if(e[0].isIntersecting) sec.classList.add("visible")
+ },{threshold:0.2}).observe(sec);
+});
+
+/* Character logic */
+const limits={1:1000,2:2000,3:3000,4:4000,5:5000,6:6000};
+const tier=document.getElementById("tierSelect");
+const box=document.getElementById("questionBox");
+const counter=document.getElementById("charCounter");
+
+tier.onchange=()=>{
+ box.value="";
+ box.maxLength=limits[tier.value];
+ counter.textContent=limits[tier.value]+" characters remaining";
+};
+
+box.oninput=()=>{
+ counter.textContent=(box.maxLength-box.value.length)+" characters remaining";
+};
+
+/* Currency toggle */
+const price=document.getElementById("priceDisplay");
+document.getElementById("currencyToggle").onchange=e=>{
+ price.textContent = e.target.value==="inr" ? "₹500 – ₹3000" : "$10 – $60";
+};
+
+/* Sunday lock */
+const now=new Date();
+const ist=new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
+const open = ist.getDay()===0 && ist.getHours()>=10 && ist.getHours()<12;
+if(!open){
+ document.getElementById("bookBtn").disabled=true;
+ document.getElementById("lockMessage").textContent=
+ "Our Sanctuary is currently closed. Bookings open this Sunday at 10:00 AM IST.";
+}
+
+/* Modal + WhatsApp */
+document.getElementById("bookBtn").onclick=()=>{
+ document.getElementById("verifyModal").style.display="flex";
+ document.getElementById("waLink").href=
+ "https://wa.me/910000000000?text=BOOKING%20VERIFICATION:%20Level%20"+
+ tier.value+
+ "%0A%0AI%20have%20attached%20my%20Payment%20Receipt,%20Transaction%20Screen,%20and%20signed%20Conduct%20Agreement%20screenshot.%0A%0AI%20understand%20that%20unprofessional%20conduct%20leads%20to%20a%20permanent%20ban.";
+};
+</script>
+
+</body>
+</html>
