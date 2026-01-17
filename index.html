@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tarot Guider | Sanctuary of Clarity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #050505; --gold: #c9a24d; --gold-dark: #8a6d2d; --text: #d4d4d4; --red: #ff3333; --border: #1a1a1a; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Playfair Display', serif; line-height: 1.6; }
+        h1, h2, h3, .cinzel { font-family: 'Cinzel', serif; letter-spacing: 2px; text-transform: uppercase; }
+
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+
+        /* HERO SECTION */
+        .hero { text-align: center; padding: 60px 20px; border-bottom: 1px solid var(--gold); background: #000; }
+        .hero-img { width: 100%; max-width: 600px; height: 300px; object-fit: cover; border: 1px solid var(--gold-dark); border-radius: 8px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(201,162,77,0.1); }
+        .tagline { color: var(--gold); font-style: italic; font-size: 1.1rem; margin-top: 10px; }
+
+        /* SECTIONS */
+        section { margin-bottom: 60px; padding: 40px; background: rgba(10,10,10,0.9); border: 1px solid var(--border); border-radius: 8px; }
+        .section-title { color: var(--gold); margin-bottom: 20px; text-align: center; font-size: 1.5rem; }
+
+        /* ABOUT & PHILOSOPHY */
+        .intro-text { text-align: center; font-size: 1.05rem; margin-bottom: 15px; }
+        .philosophy-box { border-left: 2px solid var(--gold); padding-left: 20px; margin: 20px 0; font-style: italic; }
+
+        /* FORM ELEMENTS */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        input, select, textarea { width:100%; background:#000; color:#fff; border:1px solid var(--border); padding:15px; font-family:inherit; border-radius:4px; }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); outline: none; }
+        
+        .btn { display:block; width:100%; text-align:center; padding:18px; border:1px solid var(--gold); background:transparent; color:var(--gold); text-decoration:none; cursor:pointer; font-weight:bold; text-transform:uppercase; transition:0.4s; }
+        .btn:hover { background:var(--gold); color:#000; box-shadow: 0 0 20px rgba(201,162,77,0.2); }
+        .btn:disabled { opacity:0.1; cursor:not-allowed; }
+
+        /* PRICING & PAYMENT DISPLAY */
+        .price-display-box { text-align: center; padding: 30px; border: 2px solid var(--gold); margin: 20px 0; background: #000; }
+        #priceDisplay { font-size: 1.8rem; color: var(--gold); font-weight: bold; }
+        .payment-option { border: 1px solid var(--gold-dark); padding: 15px; margin: 10px 0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .payment-label { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.9rem; }
+
+        /* RULES MODAL */
+        .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.98); justify-content:center; align-items:center; z-index:10000; padding:20px; }
+        .modal-box { background:#0a0a0a; border: 1px solid var(--red); padding:40px; max-width:550px; width: 100%; text-align: center; }
+        .rule-list { text-align: left; margin: 25px 0; font-size: 0.95rem; }
+
+        @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?auto=format&fit=crop&q=80&w=1000" alt="Tarot Sanctuary" class="hero-img">
+    <h1 class="cinzel" style="color: var(--gold);">The Tarot Guider</h1>
+    <p class="tagline">Sanctuary of Clarity</p>
+</div>
+
+<div class="container">
+    
+    <section>
+        <h2 class="section-title cinzel">About the Guider</h2>
+        <p class="intro-text">Welcome to a space of reflection and insight. I am a dedicated Tarot Guider focused on helping you find clarity within the noise of daily life.</p>
+        <div class="philosophy-box">
+            "My mission is to provide you with a high-accuracy map of your current energies, empowering you to make decisions from a place of strength and awareness."
+        </div>
+        <p class="intro-text">I believe in a disciplined, professional approach to guidance—one that respects your journey and honors the truth of the cards.</p>
+    </section>
+
+    <section id="booking">
+        <h2 class="section-title cinzel">Initiate Guidance</h2>
+        <p id="lockMessage" style="text-align:center; color:var(--gold); font-weight:bold; margin-bottom: 20px;"></p>
+        <p style="text-align:center; font-size: 0.85rem; opacity: 0.7; margin-bottom: 25px;">20 Standard Slots | <span style="color:var(--red)">5 Emergency Slots (Priority)</span></p>
+
+        <div class="form-grid">
+            <input type="text" id="clientName" placeholder="Full Name">
+            <input type="number" id="clientAge" placeholder="Age">
+        </div>
+        <div class="form-grid">
+            <select id="clientGender">
+                <option value="">Gender Identity</option><option>Male</option><option>Female</option><option>Other</option>
+            </select>
+            <select id="clientZodiac">
+                <option value="">Zodiac Sign</option>
+                <option>Aries</option><option>Taurus</option><option>Gemini</option><option>Cancer</option>
+                <option>Leo</option><option>Virgo</option><option>Libra</option><option>Scorpio</option>
+                <option>Sagittarius</option><option>Capricorn</option><option>Aquarius</option><option>Pisces</option>
+            </select>
+        </div>
+        <div class="form-grid">
+            <input type="tel" id="clientMobile" placeholder="WhatsApp Number">
+            <input type="email" id="clientEmail" placeholder="Email Address">
+        </div>
+
+        <select id="tierSelect" style="margin-bottom:
